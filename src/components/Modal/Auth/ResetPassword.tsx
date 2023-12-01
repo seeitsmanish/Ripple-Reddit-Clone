@@ -28,11 +28,11 @@ const ResetPassword: React.FC = () => {
         Reset your password
       </Text>
       {success ? (
-        <Text mb={4}>Check your email :)</Text>
+        <Text mb={4}>Check your email.</Text>
       ) : (
         <>
           <Text>
-            Enter the email associated with your account and we'll send you a
+            Enter the email associated with your account and we will send you a
             reset link
           </Text>
           <form onSubmit={onSubmit} style={{ width: '100%' }}>
