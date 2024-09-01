@@ -8,12 +8,13 @@ import {
   Skeleton,
   Spinner,
   Alert,
-  AlertIcon
+  AlertIcon,
+  useToast
 } from '@chakra-ui/react'
 import moment from 'moment'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 
 import { AiOutlineDelete } from 'react-icons/ai'
 import { BsChat, BsDot } from 'react-icons/bs'
@@ -26,6 +27,7 @@ import {
   IoBookmarkOutline
 } from 'react-icons/io5'
 import { SiFoodpanda } from 'react-icons/si'
+import TOASTS from '../toasts'
 
 type PostItemProps = {
   post: Post
@@ -56,6 +58,7 @@ const PostItem: React.FC<PostItemProps> = ({
   const [error, setError] = useState('')
   const singlePostPage = !onSelectPost
   const router = useRouter()
+  const toast = useToast();
   const handleDelete = async (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
@@ -196,6 +199,10 @@ const PostItem: React.FC<PostItemProps> = ({
             borderRadius={4}
             _hover={{ bg: 'gray.200' }}
             cursor='pointer'
+            onClick={(e) => {
+              e.stopPropagation();
+              toast(TOASTS.UNDER_DEVELOPMENT);
+            }}
           >
             <Icon as={IoArrowRedoOutline} mr={2} />
             <Text fontSize='9pt'>Share</Text>
@@ -206,6 +213,10 @@ const PostItem: React.FC<PostItemProps> = ({
             borderRadius={4}
             _hover={{ bg: 'gray.200' }}
             cursor='pointer'
+            onClick={(e) => {
+              e.stopPropagation();
+              toast(TOASTS.UNDER_DEVELOPMENT);
+            }}
           >
             <Icon as={IoBookmarkOutline} mr={2} />
             <Text fontSize='9pt'>Save</Text>
@@ -231,7 +242,7 @@ const PostItem: React.FC<PostItemProps> = ({
           )}
         </Flex>
       </Flex>
-    </Flex>
+    </Flex >
   )
 }
 export default PostItem

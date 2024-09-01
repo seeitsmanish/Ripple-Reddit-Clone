@@ -1,6 +1,6 @@
 import React from 'react'
 import { AddIcon } from '@chakra-ui/icons'
-import { Box, Flex, Icon } from '@chakra-ui/react'
+import { Box, Flex, Icon, useToast } from '@chakra-ui/react'
 import { BsArrowUpRightCircle, BsChatDots } from 'react-icons/bs'
 import { GrAdd } from 'react-icons/gr'
 import {
@@ -8,12 +8,19 @@ import {
   IoNotificationsOutline,
   IoVideocamOutline
 } from 'react-icons/io5'
+import TOASTS from '@/components/toasts'
 
 type ActionIconsProps = {}
 
 const ActionIcons: React.FC<ActionIconsProps> = () => {
+  const toast = useToast();
   return (
-    <Flex alignItems='center' flexGrow={1}>
+    <Flex alignItems='center' flexGrow={1}
+      onClick={(e) => {
+        e.stopPropagation();
+        toast(TOASTS.UNDER_DEVELOPMENT);
+      }}
+    >
       <Box
         display={{ base: 'none', md: 'flex' }}
         alignItems='center'
